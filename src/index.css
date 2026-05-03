@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-900: #0F172A;
+  --color-gold-500: #F59E0B;
+  --color-gold-600: #D97706;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 font-sans antialiased;
+}
