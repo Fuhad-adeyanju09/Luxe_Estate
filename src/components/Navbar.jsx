@@ -51,20 +51,20 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className={`font-medium transition-colors hover:text-gold-500 ${navbarScrolled ? 'text-slate-700' : 'text-white/90'}`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <a
-              href="/#contact"
+            <Link
+              to="/#contact"
               className="bg-gold-500 hover:bg-gold-600 text-white px-6 py-2.5 rounded-full font-semibold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-gold-500/30"
             >
               Book a Viewing
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -84,23 +84,23 @@ const Navbar = () => {
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100">
           <div className="px-4 pt-2 pb-6 space-y-2">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 onClick={() => setIsOpen(false)}
                 className="block px-3 py-3 text-base font-medium text-slate-800 hover:text-gold-500 hover:bg-slate-50 rounded-md"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             <div className="pt-4 pb-2">
-              <a
-                href="/#contact"
+              <Link
+                to="/#contact"
                 onClick={() => setIsOpen(false)}
                 className="block w-full text-center bg-navy-900 text-white px-5 py-3 rounded-md font-semibold hover:bg-gold-500 transition-colors"
               >
                 Book a Viewing
-              </a>
+              </Link>
             </div>
           </div>
         </div>
