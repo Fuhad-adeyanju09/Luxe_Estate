@@ -133,6 +133,10 @@ app.patch('/api/contacts/:id/status', async (req, res) => {
     res.status(500).json({ message: 'Error updating contact status', error: error.message });
   }
 });
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+export default app;
