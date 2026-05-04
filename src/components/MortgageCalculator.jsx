@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
+import { useCurrency } from '../contexts/CurrencyContext';
 
 const MortgageCalculator = ({ propertyPrice = 0 }) => {
   const [price, setPrice] = useState(propertyPrice);
@@ -7,6 +8,7 @@ const MortgageCalculator = ({ propertyPrice = 0 }) => {
   const [term, setTerm] = useState(25);
   const [rate, setRate] = useState(4.5);
   const [isFirstTimeBuyer, setIsFirstTimeBuyer] = useState(false);
+  const { formatPrice, currency } = useCurrency();
 
   const [results, setResults] = useState({
     monthlyPayment: 0,
@@ -132,20 +134,20 @@ const MortgageCalculator = ({ propertyPrice = 0 }) => {
           <div className="mb-6 pb-6 border-b border-slate-200">
             <p className="text-sm text-slate-500 uppercase tracking-wider font-semibold mb-2">Estimated Monthly Payment</p>
             <p className="text-4xl font-bold text-navy-900">
-              £{results.monthlyPayment > 0 ? results.monthlyPayment.toLocaleString(undefined, { maximumFractionDigits: 0 }) : '0'}
+              {results.monthlyPayment > 0 ? formatPrice(results.monthlyPayment) : `${currency.symbol}0`}
             </p>
-            <p className="text-xs text-slate-400 mt-2">Principal & Interest only</p>
+            <p className="text-xs text-slate-400 mt-2">Principal & Interest only · Displayed in {currency.name}</p>
           </div>
           
           <div>
-            <p className="text-sm text-slate-500 uppercase tracking-wider font-semibold mb-2">Stamp Duty Owed</p>
+            <p className="text-sm text-slate-500 uppercase tracking-wider font-semibold mb-2">Stamp Duty (SDLT) Owed</p>
             <p className="text-3xl font-bold text-navy-900">
-              £{results.stampDuty > 0 ? results.stampDuty.toLocaleString(undefined, { maximumFractionDigits: 0 }) : '0'}
+              {results.stampDuty > 0 ? formatPrice(results.stampDuty) : '£0'}
             </p>
             <p className="text-xs text-slate-400 mt-2">
               {isFirstTimeBuyer && price <= 625000 
-                ? 'Calculated using First-Time Buyer relief rates.' 
-                : 'Calculated using standard UK standard rates.'}
+                ? 'First-Time Buyer SDLT relief applied (England & N. Ireland).' 
+                : 'Standard UK Stamp Duty Land Tax (SDLT) rates.'}
             </p>
           </div>
         </div>

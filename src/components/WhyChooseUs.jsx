@@ -5,23 +5,23 @@ const WhyChooseUs = () => {
   const features = [
     {
       icon: <Award className="h-10 w-10 text-gold-500" />,
-      title: "10+ Years Experience",
-      description: "A decade of excellence in the luxury real estate market, providing unparalleled expertise and insight."
+      title: "12+ Years Experience",
+      description: "Over a decade helping buyers, sellers and renters navigate the UK property market with confidence and clarity."
     },
     {
       icon: <Users className="h-10 w-10 text-gold-500" />,
-      title: "500+ Homes Sold",
-      description: "A proven track record of successfully matching discerning clients with their perfect properties."
+      title: "500+ Happy Movers",
+      description: "From first-time buyers to growing families, we've helped hundreds of people find the right home at the right price."
     },
     {
       icon: <ShieldCheck className="h-10 w-10 text-gold-500" />,
-      title: "Trusted by Families",
-      description: "Building lasting relationships through transparency, integrity, and exceptional service."
+      title: "Transparent & Honest",
+      description: "We believe in full transparency throughout the buying and selling process — no hidden fees, no pressure, just honest advice."
     },
     {
       icon: <Map className="h-10 w-10 text-gold-500" />,
-      title: "Local Market Expert",
-      description: "Deep understanding of exclusive neighborhoods, market trends, and hidden property gems."
+      title: "UK-Wide Coverage",
+      description: "From London to Edinburgh, we have local knowledge across the UK to help you find the right property in the right area."
     }
   ];
 
@@ -29,23 +29,24 @@ const WhyChooseUs = () => {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
-          
+
           {/* Left Content */}
           <div className="lg:w-1/2">
-            <h2 className="text-sm font-bold tracking-widest text-gold-500 uppercase mb-3">Our Expertise</h2>
+            <h2 className="text-sm font-bold tracking-widest text-gold-500 uppercase mb-3">Why Us</h2>
             <h3 className="text-4xl md:text-5xl font-bold text-navy-900 mb-6 leading-tight">
               Why Choose Luxe Estates?
             </h3>
             <p className="text-lg text-slate-600 mb-8 font-light">
-              We don't just sell houses; we curate lifestyles. Our dedicated team of seasoned professionals is committed to delivering a seamless, confidential, and highly personalized real estate experience.
+              We believe finding a home should be straightforward and stress-free. Our experienced team is here to support you through every step — with honest advice, no hidden fees, and genuine care.
             </p>
-            <div className="relative h-80 rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://placehold.co/800x600/0f172a/ffffff?text=Luxury+Interior" 
-                alt="Luxury Interior" 
+            <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src="https://images.unsplash.com/photo-1582407947304-fd86f28f4b79?w=800&q=80"
+                alt="UK Street of Houses"
+                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/800x600/e2e8f0/94a3b8?text=Houses'; }}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-navy-900/20"></div>
+              <div className="absolute inset-0 bg-navy-900/20" />
             </div>
           </div>
 
@@ -57,9 +58,7 @@ const WhyChooseUs = () => {
                   {feature.icon}
                 </div>
                 <h4 className="text-xl font-bold text-navy-900 mb-3">{feature.title}</h4>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  {feature.description}
-                </p>
+                <p className="text-slate-600 text-sm leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>

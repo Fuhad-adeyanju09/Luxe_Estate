@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, Bed, Bath, Square, ArrowLeft, Phone, Mail, User, MessageCircle, CheckCircle } from 'lucide-react';
 import MortgageCalculator from '../components/MortgageCalculator';
+import { useCurrency } from '../contexts/CurrencyContext';
 
 const getEpcColor = (rating) => {
   const colors = {
@@ -22,6 +23,7 @@ const PropertyDetailsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeImage, setActiveImage] = useState(0);
+  const { formatPrice } = useCurrency();
 
   useEffect(() => {
     const fetchProperty = async () => {
@@ -74,7 +76,9 @@ const PropertyDetailsPage = () => {
         {/* Header & Image Gallery */}
         <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 mb-10 p-6">
           <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden mb-4">
-            <img src={images[activeImage]} alt={property.title} className="w-full h-full object-cover" />
+            <img src={images[activeImage]} alt={property.title} 
+                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/800x500/e2e8f0/94a3b8?text=Property+Photo'; }}
+                className="w-full h-full object-cover" />
             <div className="absolute top-6 left-6 flex gap-2">
               <div className="bg-navy-900 text-white px-4 py-2 rounded-full text-sm font-semibold tracking-wide shadow-md">
                 {property.status}
@@ -84,7 +88,7 @@ const PropertyDetailsPage = () => {
               </div>
             </div>
             <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm text-navy-900 px-5 py-2 rounded-full text-lg font-bold shadow-sm">
-              £{property.price.toLocaleString()}
+              {formatPrice(property.price)}
             </div>
           </div>
           
@@ -97,7 +101,9 @@ const PropertyDetailsPage = () => {
                   onClick={() => setActiveImage(index)}
                   className={`flex-shrink-0 w-32 h-24 rounded-xl overflow-hidden border-4 transition-all duration-300 ${activeImage === index ? 'border-gold-500 shadow-md' : 'border-transparent opacity-70 hover:opacity-100'}`}
                 >
-                  <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                  <img src={img} alt={`Photo ${index + 1}`}
+                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/200x150/e2e8f0/94a3b8?text=Photo'; }}
+                    className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -200,30 +206,35 @@ const PropertyDetailsPage = () => {
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-8">
             
-            {/* Price Breakdown */}
+            {/* Price Summary (UK-specific) */}
             <div className="bg-navy-900 text-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-[100px]"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-[100px]" />
               <h3 className="text-xl font-bold mb-6">Price Summary</h3>
-              
+
               <div className="space-y-4 mb-6 relative z-10">
                 <div className="flex justify-between items-center text-slate-300">
-                  <span>Base Price</span>
-                  <span>£{(property.price * 0.95).toLocaleString()}</span>
+                  <span>Asking Price</span>
+                  <span>{formatPrice(property.price)}</span>
                 </div>
                 <div className="flex justify-between items-center text-slate-300">
-                  <span>Est. Taxes (3%)</span>
-                  <span>£{(property.price * 0.03).toLocaleString()}</span>
+                  <span>Est. Conveyancing</span>
+                  <span>{formatPrice(1800)}</span>
                 </div>
                 <div className="flex justify-between items-center text-slate-300">
-                  <span>Closing Fees (2%)</span>
-                  <span>£{(property.price * 0.02).toLocaleString()}</span>
+                  <span>Survey (Level 2)</span>
+                  <span>{formatPrice(500)}</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-300">
+                  <span>Land Registry Fee</span>
+                  <span>{formatPrice(305)}</span>
                 </div>
               </div>
-              
+
               <div className="border-t border-white/20 pt-6 mt-6 flex justify-between items-center relative z-10">
-                <span className="text-lg font-bold">Total Asking Price</span>
-                <span className="text-2xl font-bold text-gold-500">£{property.price.toLocaleString()}</span>
+                <span className="text-base font-bold">Est. Total Cost</span>
+                <span className="text-2xl font-bold text-gold-500">{formatPrice(property.price + 2605)}</span>
               </div>
+              <p className="text-xs text-slate-500 mt-3 relative z-10">Stamp Duty calculated separately below. All estimates only.</p>
             </div>
 
             {/* Seller Contact */}
