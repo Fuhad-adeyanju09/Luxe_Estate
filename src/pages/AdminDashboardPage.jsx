@@ -4,6 +4,7 @@ import {
   Home, MessageSquare, PlusCircle, Trash2, CheckCircle,
   LogOut, LayoutDashboard, BarChart3, X
 } from 'lucide-react';
+import Logo from '../components/Logo';
 
 const AdminDashboardPage = () => {
   const navigate = useNavigate();
@@ -165,8 +166,8 @@ const AdminDashboardPage = () => {
       {/* Sidebar */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-slate-950 text-white flex flex-col transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:flex`}>
         <div className="flex items-center gap-3 px-6 py-6 border-b border-slate-800">
-          <div className="p-2 bg-gold-500 rounded-lg">
-            <Home className="h-5 w-5 text-white" />
+          <div className="p-2 bg-gold-500 rounded-lg flex items-center justify-center">
+            <Logo className="h-5 w-5 text-white" />
           </div>
           <div>
             <p className="font-bold text-white text-sm">LUXE ESTATES</p>

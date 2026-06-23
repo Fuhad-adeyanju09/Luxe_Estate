@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Home, ChevronDown, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import Logo from './Logo';
 import { useCurrency } from '../contexts/CurrencyContext';
 
 const Navbar = () => {
@@ -77,8 +78,8 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="p-2 bg-navy-900 rounded-lg group-hover:bg-gold-500 transition-colors">
-              <Home className="h-5 w-5 text-white" />
+            <div className="p-2 bg-navy-900 rounded-lg group-hover:bg-gold-500 transition-colors flex items-center justify-center">
+              <Logo className="h-5 w-5 text-white" />
             </div>
             <div>
               <p className={`text-lg font-bold tracking-tight ${logoTextColor}`}>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Home, Lock, Shield } from 'lucide-react';
+import { Eye, EyeOff, Lock, Shield } from 'lucide-react';
+import Logo from '../components/Logo';
 
 const AdminLoginPage = () => {
   const [password, setPassword] = useState('');
@@ -46,8 +47,8 @@ const AdminLoginPage = () => {
         {/* Logo */}
         <div className="text-center mb-10">
           <a href="/" className="inline-flex items-center gap-3 mb-6 group">
-            <div className="p-3 bg-gold-500 rounded-xl group-hover:scale-105 transition-transform">
-              <Home className="h-7 w-7 text-white" />
+            <div className="p-3 bg-gold-500 rounded-xl group-hover:scale-105 transition-transform flex items-center justify-center">
+              <Logo className="h-7 w-7 text-white" />
             </div>
             <div className="text-left">
               <div className="text-2xl font-bold tracking-tight text-white">
